@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo-pod
+  labels:
+    name: mongo-pod
+spec:
+  volumes:
+    - name: mongodata
+      persistentVolumeClaim:
+          claimName: nodejs-writer-volume-claim
+  containers:
+  - name: mongo-pod
+    image: mongo
+    command:
+    - mongod
+    - --dbpath
+    - '/mongodata'
+    volumeMounts:
+      - name:  mongodata
+        mountPath:  /mongodata

@@ -1,0 +1,1 @@
+kubeadm join 103.41.206.252:6443 --token i83bub.n5qyrdg7tldzgupb     --discovery-token-ca-cert-hash sha256:e3387c75f84c9737e8ea24a67817aca40785a93733b89429dd9356971e3d1ce5

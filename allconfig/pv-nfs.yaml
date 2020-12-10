@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-nfs1-volume
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 20Gi
+  nfs:
+    server: 127.0.0.1
+    path: "/mny/kube_storage"
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-nfs2-volume
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 20Gi
+  nfs:
+    server: 127.0.0.1
+    path: "/mny/kube_storage"
