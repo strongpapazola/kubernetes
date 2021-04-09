@@ -19,13 +19,13 @@ spec:
         - name: mongo
           image: mongo
 #DO THIS BEFORE ADD SECURITY
-          command: ["mongod", "--bind_ip", "0.0.0.0", "--replSet", "rs0"]
-#          command: ["mongod", "--bind_ip", "0.0.0.0", "--replSet", "rs0","-f","/data/db/mongod.conf"]
+#          command: ["mongod", "--bind_ip", "0.0.0.0", "--replSet", "rs0", "--dbpath", "/mongodata/"]
+          command: ["mongod", "--bind_ip", "0.0.0.0", "--replSet", "rs0", "--dbpath", "/mongodata/","-f","/mongodata/mongod.conf"]
           ports:
           - containerPort: 27017
           volumeMounts:
           - name: volume
-            mountPath: /data/db
+            mountPath: /mongodata
   volumeClaimTemplates:
   - metadata:
       name: volume
