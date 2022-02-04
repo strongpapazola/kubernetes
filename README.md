@@ -69,3 +69,8 @@ You are supposed to create GitLab CI Pipeline that on each run:
 - Only succeeds if it return the NAT IP of your kubernetes pods subnetwork.
 
 You can create this using best practices you believe in. This automated deployment should be idempotent.
+
+
+https://raw.githubusercontent.com/khannedy/belajar-kubernetes/master/examples/service-nginx-nodeport.yaml
+https://github.com/khannedy/belajar-kubernetes
+
