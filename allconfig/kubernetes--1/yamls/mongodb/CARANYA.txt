@@ -1,0 +1,39 @@
+Buat Dynamic NFS Provisioning dulu
+trus set storageclass jadi default dengan perintah 
+# kubectl get storageclass
+NAME                            PROVISIONER                RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION
+managed-nfs-storage (default)   nfs.micro1.tampil.id/nfs   Delete          Immediate           false
+# kubectl patch storageclass managed-nfs-storage -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+lalu config replikasi mongo dengan masuk mongo0
+# rs.initiate()
+# var cfg = rs.config()
+# cfg.members[0].host='mongo-0.mongo:27017'
+# rs.reconfig(cfg)
+
+add host
+# rs.add('mongo-1.mongo:27017')
+then
+# rs.add('mongo-2.mongo:27017')
+
+buat ngetestnya ketik
+# kubectl run mongo --rm -it --image mongo -- sh
+lalu coba2 dgn pprintah:
+# mongo mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo
+# mongo mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo --eval 'rs.status()' | grep name
+# mongo mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo/admin?replicaSet=rs0
+
+
+untuk ngeekspose
+# microk8s.enable metallb
+set IP
+
+# kubectl expose pod mongo-0 --type LoadBalancer --port=27017 --target-port=27017
+# kubectl expose pod mongo-1 --type LoadBalancer --port=27017 --target-port=27017
+# kubectl expose pod mongo-2 --type LoadBalancer --port=27017 --target-port=27017
+
+
+
+
+
+

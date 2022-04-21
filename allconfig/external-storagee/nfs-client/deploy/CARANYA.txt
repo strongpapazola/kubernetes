@@ -1,0 +1,8 @@
+#nfs.micro1.tampil.id/nfs
+kubectl apply -f rbac.yaml
+kubectl get clusterrole,clusterrolebinding,role,rolebinding | grep nfs
+kubectl apply -f class.yaml
+kubectl get storageclass
+kubectl apply -f deployment.yaml
+kubectl get deployment
+
